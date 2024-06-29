@@ -17,6 +17,6 @@ jobs:
       - name: using acheck out actions
         uses: actions/checkout@v2
       - name: Run online script
-        run: hello world!
+        run: "echo"
     
     
