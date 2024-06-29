@@ -17,9 +17,21 @@ jobs:
         uses: actions/checkout@v2
       - name: Run online script
         run: "echo"
+
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Action 1
+      run: echo "This is Action 1"
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Action 2
+      run: echo "This is Action 2"
   
   deploy:
-    needs: build
+    needs: [ build, "job1", job2 ]
     runs-on: ubuntu-latest
     steps:
       - name: using acheck out actions
