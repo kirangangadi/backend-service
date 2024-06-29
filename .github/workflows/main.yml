@@ -30,7 +30,7 @@ jobs:
     - name: Action 2
       run: echo "This is Action 2"
   
-  Deploy_Service_One:
+  Deploy_Service_One-UAT-Azure:
     needs: [ Build_Service_One ]
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +38,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Run online script
         run: "echo"
-  Deploy_Service_Two:
+  Deploy_Service_Two-UAT-Azure:
     needs: [ Build_Service_Two ]
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +47,33 @@ jobs:
       - name: Run online script
         run: "echo"
         
-  Deploy_Service_Three:
+  Deploy_Service_Three-UAT-Azure:
+    needs: [ Build_Service_Three ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: using acheck out actions
+        uses: actions/checkout@v2
+      - name: Run online script
+        run: "echo"
+
+  Deploy_Service_One-UAT-GCP:
+      needs: [ Build_Service_One ]
+      runs-on: ubuntu-latest
+      steps:
+        - name: using acheck out actions
+          uses: actions/checkout@v2
+        - name: Run online script
+          run: "echo"
+  Deploy_Service_Two-UAT-GCP:
+    needs: [ Build_Service_Two ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: using acheck out actions
+        uses: actions/checkout@v2
+      - name: Run online script
+        run: "echo"
+          
+  Deploy_Service_Three-UAT-Gcp:
     needs: [ Build_Service_Three ]
     runs-on: ubuntu-latest
     steps:
