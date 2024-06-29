@@ -12,7 +12,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: using acheck out actions
+        uses: actions/checkout@v2
+      - name: Run online script
+        run: "echo"
+  
+  deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: using acheck out actions
         uses: actions/checkout@v2
