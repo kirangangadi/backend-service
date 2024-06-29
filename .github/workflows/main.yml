@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - main
-      # - master
+      - master
       - release/*
       - development
   workflow_dispatch:
 
 jobs:
-  build:
+  Build_Service_One:
     runs-on: ubuntu-latest
     steps:
       - name: using acheck out actions
@@ -18,25 +18,41 @@ jobs:
       - name: Run online script
         run: "echo"
 
-  job1:
+  Build_Service_Two:
     runs-on: ubuntu-latest
     steps:
     - name: Action 1
       run: echo "This is Action 1"
 
-  job2:
+  Build_Service_Three:
     runs-on: ubuntu-latest
     steps:
     - name: Action 2
       run: echo "This is Action 2"
   
-  deploy:
-    needs: [ build, "job1", job2 ]
+  Deploy_Service_One:
+    needs: [ Build_Service_One ]
     runs-on: ubuntu-latest
     steps:
       - name: using acheck out actions
         uses: actions/checkout@v2
       - name: Run online script
         run: "echo"
-    
+  Deploy_Service_Two:
+    needs: [ Build_Service_Two ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: using acheck out actions
+        uses: actions/checkout@v2
+      - name: Run online script
+        run: "echo"
+        
+  Deploy_Service_Three:
+    needs: [ Build_Service_Three ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: using acheck out actions
+        uses: actions/checkout@v2
+      - name: Run online script
+        run: "echo"
     
