@@ -80,5 +80,10 @@ jobs:
       - name: using acheck out actions
         uses: actions/checkout@v2
       - name: Run online script
-        run: "echo"
+        run: |-
+        
+          echo "hello"
+          SUMMARY="# Docker image created 🚀 /n __Docker Image Spec__: _docker path_ /n 
+          `Docker Image Spec: _docker path`
+          > [!NOTE]> Useful information that users should know, even when skimming content."
     
