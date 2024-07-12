@@ -15,7 +15,7 @@ jobs:
       run: |-
         echo "update the summary"
         SUMMARY=$'### Docker image created and Pushed successfully 🚀\n'
-        echo "$SUMMARY Docker Image Spec: Path is Here" >> $GITHUB_STEP_SUMMARY
+        echo "$SUMMARY __Docker Image Spec__: _docker path_" >> $GITHUB_STEP_SUMMARY
 
   
   
