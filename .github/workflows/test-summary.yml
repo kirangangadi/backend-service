@@ -1,0 +1,25 @@
+name: Summary Test
+
+on:
+  push:
+    branches: 
+        - master1
+  workflow_dispatch:
+
+jobs:
+  build_service_one:
+    runs-on: ubuntu-latest
+    name: Build Service One
+    steps:
+    - name: service 1
+      run: |-
+        echo "update the summary"
+        SUMMARY=$'## Docker image created and Pushed successfully 🚀\n'
+        echo "$SUMMARY __Docker Image Spec__: _docker path_" >> $GITHUB_STEP_SUMMARY
+        echo "\`Docker Image Spec: _docker path_\`" >> $GITHUB_STEP_SUMMARY
+        echo -e "> [!NOTE]\n > Useful information that users should know, even when skimming content." >> $GITHUB_STEP_SUMMARY
+        SUMMARY1=$" summary1 "
+        echo "$SUMMARY test script: _${SUMMARY1}_"  >> $GITHUB_STEP_SUMMARY
+
+  
+  
