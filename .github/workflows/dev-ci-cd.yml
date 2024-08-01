@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Uat Deploy
     needs: Deploy_Dev
+    environment:
+        name: UAT
     steps:
     - name: service 1
       run: echo "Deploy on UAT"
