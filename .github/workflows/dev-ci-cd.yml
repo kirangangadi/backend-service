@@ -1,0 +1,30 @@
+name: Dev Build and Deployment
+
+on:
+  push:
+    branches: 
+        - feature/*
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    name: Build Service
+    steps:
+    - name: service 1
+      run: echo "Build"
+  Deploy_Dev:
+    runs-on: ubuntu-latest
+    name: Dev Deploy
+    needs: Build
+    steps:
+    - name: service 1
+      run: echo "Deploy on Dev"
+  Deploy_UAT:
+    runs-on: ubuntu-latest
+    name: Uat Deploy
+    needs: Build
+    steps:
+    - name: service 1
+      run: echo "Deploy on UAT"
+  
