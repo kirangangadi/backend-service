@@ -16,7 +16,7 @@ jobs:
     name: Build Service
     steps:
     - name: service 1
-      run: echo "Build"
+      run: echo "${{ github.workflow }}-${{ github.ref }}"
   Deploy_Dev:
     runs-on: ubuntu-latest
     name: Dev Deploy
