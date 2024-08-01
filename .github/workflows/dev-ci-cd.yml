@@ -23,7 +23,7 @@ jobs:
   Deploy_UAT:
     runs-on: ubuntu-latest
     name: Uat Deploy
-    needs: Build
+    needs: Deploy_Dev
     steps:
     - name: service 1
       run: echo "Deploy on UAT"
