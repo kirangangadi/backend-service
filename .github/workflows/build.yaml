@@ -14,7 +14,7 @@ on:
 jobs:
   build_service:
     runs-on: ubuntu-latest
-    name: "Build Service "
+    name: "${{ inputs.PROJECT_NAME }} Build Service "
     steps:
     - name: service 1
       run: |-
