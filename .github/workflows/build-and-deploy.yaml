@@ -9,13 +9,13 @@ on:
   workflow_dispatch:
 
 env:
-  env_name: MyProject
+  PROJECT_NAME: Dev
       
 jobs:
   build:
     uses: ./.github/workflows/build.yaml
     with:
-      env_name: ${{ env.env_name }}
+      env_name: ${{ env.PROJECT_NAME }}
 
   deploy:
     needs: build
