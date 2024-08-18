@@ -3,7 +3,7 @@ name: Build Service
 on:
   push:
     branches: 
-        - master
+        - master1
   workflow_dispatch:
   workflow_call:
     inputs:
