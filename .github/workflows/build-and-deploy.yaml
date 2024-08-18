@@ -1,0 +1,15 @@
+# .github/workflows/build-and-deploy.yaml
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+
+  deploy:
+    needs: build
+    uses: ./.github/workflows/deploy.yaml
