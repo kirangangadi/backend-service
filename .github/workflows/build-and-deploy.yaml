@@ -15,7 +15,7 @@ jobs:
   build:
     uses: ./.github/workflows/build.yaml
     with:
-      env_name_name: ${{ env.env_name }}
+      env_name: ${{ env.env_name }}
 
   deploy:
     needs: build
