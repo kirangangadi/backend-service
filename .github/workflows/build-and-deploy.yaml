@@ -7,10 +7,15 @@ on:
       - main
   workflow_call:
   workflow_dispatch:
+
+env:
+  env_name: MyProject
       
 jobs:
   build:
     uses: ./.github/workflows/build.yaml
+    with:
+      env_name_name: ${{ env.env_name }}
 
   deploy:
     needs: build
