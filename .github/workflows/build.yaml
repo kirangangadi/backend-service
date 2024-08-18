@@ -6,11 +6,16 @@ on:
         - master
   workflow_dispatch:
   workflow_call:
+    inputs:
+        env_name:
+          required: true
+          type: string
 
 jobs:
   build_service:
     runs-on: ubuntu-latest
-    name: Build Service 
+    name: "${{ inputs.build_name }} Build Service "
     steps:
     - name: service 1
-      run: echo "This is service 1"
+      run: |-
+        echo "Building the project: ${{ inputs.build_name }}"
