@@ -1,0 +1,16 @@
+name: Build Service
+
+on:
+  push:
+    branches: 
+        - master
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build_service:
+    runs-on: ubuntu-latest
+    name: Build Service 
+    steps:
+    - name: service 1
+      run: echo "This is service 1"
