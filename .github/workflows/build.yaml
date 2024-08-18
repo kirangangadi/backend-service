@@ -7,15 +7,15 @@ on:
   workflow_dispatch:
   workflow_call:
     inputs:
-        env_name:
+        PROJECT_NAME:
           required: true
           type: string
 
 jobs:
   build_service:
     runs-on: ubuntu-latest
-    name: "${{ inputs.env_name }} Build Service "
+    name: "Build Service "
     steps:
     - name: service 1
       run: |-
-        echo "Building the project: ${{ inputs.env_name }}"
+        echo "Building the project: ${{ inputs.PROJECT_NAME }}"
