@@ -10,6 +10,7 @@ env:
   one: 1
   two: zwei
   three: tres
+  projectName: dev
 
 jobs:
   first-job:
@@ -19,3 +20,8 @@ jobs:
         echo "${{ env.one }}"
         echo "${{ env.two }}"
         echo "${{ env.three }}"
+        
+  build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      PROJECT_NAME: ${{ projectName }}
