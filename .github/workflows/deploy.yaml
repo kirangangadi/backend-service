@@ -6,11 +6,17 @@ on:
         - master1
   workflow_dispatch:
   workflow_call:
+    inputs:
+      VERSION:
+        required: true
+        type: string
+    
+
 
 jobs:
-  build_service:
+  deploy_service:
     runs-on: ubuntu-latest
     name: Deploy Service 
     steps:
     - name: service 1
-      run: echo "This is service 1"
+      run: echo "version is ${{ inputs.VERSION }}"

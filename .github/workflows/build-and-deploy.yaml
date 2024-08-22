@@ -19,3 +19,5 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/deploy.yaml
+    with:
+      VERSION: ${{ needs.build.outputs.VERSION }}

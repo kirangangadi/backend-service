@@ -11,11 +11,19 @@ on:
           required: true
           type: string
 
+    outputs:
+      VERSION:
+        value: ${{ jobs.build_service.outputs.VERSION }}
+
 jobs:
   build_service:
     runs-on: ubuntu-latest
     name: "${{ inputs.PROJECT_NAME }} Build Service "
+    outputs:
+      VERSION: ${{ steps.step1.outputs.VERSION}}
     steps:
     - name: service 1
+      id: step1
       run: |-
         echo "Building the project: ${{ inputs.PROJECT_NAME }}"
+        echo "VERSION=abcdef" >> $GITHUB_OUTPUT
