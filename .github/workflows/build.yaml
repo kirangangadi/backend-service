@@ -26,4 +26,4 @@ jobs:
       id: step1
       run: |-
         echo "Building the project: ${{ inputs.PROJECT_NAME }}"
-        echo "VERSION=abcdef" >> $GITHUB_OUTPUT
+        echo "VERSION=abkajdskjascdef" >> $GITHUB_OUTPUT
