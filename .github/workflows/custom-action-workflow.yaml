@@ -24,6 +24,6 @@ jobs:
         echo ls -R
 
     - name: Run Custom Action
-      uses: ${{ github.event.inputs.action_path }}
+      uses: ./.github/custom-action/add-steps
       with:
         message: "Hello from the custom action!"

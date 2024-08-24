@@ -1,10 +1,14 @@
 name: "Echo Message Action"
 description: "A custom action to echo a message"
 author: "Your Name"
+
 runs:
   using: "composite"
   steps:
-    - run: echo "${{ inputs.message }}"
+    - run: |-
+        echo "${{ inputs.message }}"
+        pwd
+        echo "workspace path ${GITHUB_WORKSPACE}"
       shell: bash
 
 inputs:
