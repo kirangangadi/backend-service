@@ -5,6 +5,11 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      action_path:
+        description: "Path to the custom action"
+        required: true
+        default: "./.github/custom-action/add-steps"
 
 jobs:
   run-custom-action:
@@ -19,6 +24,6 @@ jobs:
         echo ls -R
 
     - name: Run Custom Action
-      uses: ./.github/custom-action/add-steps
+      uses: ${{ github.event.inputs.action_path }}
       with:
         message: "Hello from the custom action!"
