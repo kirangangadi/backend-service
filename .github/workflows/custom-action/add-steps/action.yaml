@@ -1,0 +1,13 @@
+name: "Echo Message Action"
+description: "A custom action to echo a message"
+author: "Your Name"
+runs:
+  using: "composite"
+  steps:
+    - run: echo "${{ inputs.message }}"
+      shell: bash
+
+inputs:
+  message:
+    description: "The message to echo"
+    required: true
