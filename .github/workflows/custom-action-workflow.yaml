@@ -25,6 +25,6 @@ jobs:
 
     - name: Run Custom Action
       # uses: ./.github/custom-action/add-steps
-      uses: kirangangadi/backend-service/.github/custom-action/add-steps
+      uses: kirangangadi/backend-service/.github/custom-action/add-steps@master
       with:
         message: "Hello from the custom action!"
