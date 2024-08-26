@@ -9,6 +9,7 @@ jobs:
   yq_test:
     outputs: 
         json_single_line: ${{ steps.get-config.outputs.json_single_line }}
+        JSON_OUTPUT3: ${{ steps.get-config.outputs.JSON_OUTPUT3 }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -31,7 +32,7 @@ jobs:
          echo "JSON_OUTPUT3 is $JSON_OUTPUT3"
          echo "json output is $output_test"
          echo "json_single_line is $json_single_line"
-         #echo "output_test=$output_test" >> GITHUB_OUTPUT
+         echo "JSON_OUTPUT3=$JSON_OUTPUT3" >> GITHUB_OUTPUT
          echo "json_single_line=$json_single_line" >> GITHUB_OUTPUT
 
   use-output:
@@ -44,5 +45,6 @@ jobs:
       - name: Use JSON output
         run: |
             echo "JSON output: ${{ needs.yq_test.outputs.json_single_line }}"
+            echo "JSON output: ${{ needs.yq_test.outputs.JSON_OUTPUT3 }}"
 
 
