@@ -23,7 +23,7 @@ jobs:
          JSON_OUTPUT2=$(yq '.batches | to_entries | map("\"" + (.value | join(", ")) + "\"") | join(", ")' .github/input.yaml | paste -sd "," -)
 
          output_test=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml)
-         json_single_line=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -r 'join(",")')
+         json_single_line=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -s -c)
          JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[" + join(",") + "]"'  .github/input.yaml)
          echo "JSON_OUTPUT is $JSON_OUTPUT"
          echo "JSON_OUTPUT1 is $JSON_OUTPUT1"
