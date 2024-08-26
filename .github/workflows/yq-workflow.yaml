@@ -23,6 +23,6 @@ jobs:
          echo "$JSON_OUTPUT"
          echo "$JSON_OUTPUT1"
          echo "$JSON_OUTPUT2"
-         echo "$output"
+         echo "output=$output" >> GITHUB_OUTPUT
 
 
