@@ -11,6 +11,7 @@ jobs:
         json_single_line: ${{ steps.get-config.outputs.json_single_line }}
         JSON_OUTPUT3: ${{ steps.get-config.outputs.JSON_OUTPUT3 }}
         test_output: ${{ steps.get-config.outputs.test_output }}
+        manual_input: ${{ steps.get-config.outputs.manual_input }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -27,6 +28,7 @@ jobs:
          output_test=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml)
          json_single_line=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -c)
          JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[" + join(",") + "]"'  .github/input.yaml)
+         manual_input="[abc,bbc]"
          echo "JSON_OUTPUT is $JSON_OUTPUT"
          echo "JSON_OUTPUT1 is $JSON_OUTPUT1"
          echo "JSON_OUTPUT2 is $JSON_OUTPUT2"
@@ -34,8 +36,9 @@ jobs:
          echo "json output is $output_test"
          echo "json_single_line is $json_single_line"
          echo "JSON_OUTPUT3=$JSON_OUTPUT3" >> GITHUB_OUTPUT
-         echo '::set-output name=json_single_line=$json_single_line' >> GITHUB_OUTPUT
-         echo '::set-output name=test_output=test' >> $GITHUB_OUTPUT
+         echo "json_single_line=$json_single_line" >> GITHUB_OUTPUT
+         echo "test_output=test" >> $GITHUB_OUTPUT
+         echo "manual_input=$manual_input" >> $GITHUB_OUTPUT
 
   use-output:
     needs: yq_test
@@ -49,6 +52,7 @@ jobs:
             echo "JSON output: ${{ needs.yq_test.outputs.json_single_line }}"
             echo "JSON output: ${{ needs.yq_test.outputs.JSON_OUTPUT3 }}"
             echo "JSON output: ${{ needs.yq_test.outputs.test_output }}"
+            echo "JSON output: ${{ needs.yq_test.outputs.manual_input }}"
 
 #   example_metrix:
 #     needs: yq_test
