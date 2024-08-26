@@ -16,6 +16,8 @@ jobs:
         run: |
          ls -R
          JSON_OUTPUT=$(yq '.batches | to_entries | map([.value[]] | join(","))' .github/input.yaml)
+         JSON_OUTPUT1=$(yq '.batches | .[] | join(", ")' .github/input.yaml)
          echo "$JSON_OUTPUT"
+         echo "$JSON_OUTPUT1"
 
 
