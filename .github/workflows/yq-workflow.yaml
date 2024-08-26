@@ -29,6 +29,7 @@ jobs:
          json_single_line=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -c)
          JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[" + join(",") + "]"'  .github/input.yaml)
          manual_input="[abc,bbc]"
+         test_output="[service1,service2,service3,service4,service5,service6,service7,service8,service9]"
          echo "JSON_OUTPUT is $JSON_OUTPUT"
          echo "JSON_OUTPUT1 is $JSON_OUTPUT1"
          echo "JSON_OUTPUT2 is $JSON_OUTPUT2"
@@ -37,7 +38,7 @@ jobs:
          echo "json_single_line is $json_single_line"
          echo "JSON_OUTPUT3=$JSON_OUTPUT3" >> GITHUB_OUTPUT
          echo "json_single_line=$json_single_line" >> GITHUB_OUTPUT
-         echo "test_output=test" >> $GITHUB_OUTPUT
+         echo "test_output=$test_output" >> $GITHUB_OUTPUT
          echo "manual_input=$manual_input" >> $GITHUB_OUTPUT
 
   use-output:
