@@ -15,7 +15,7 @@ jobs:
       - name: Check YQ
         run: |
          ls -R
-         JSON_OUTPUT=$(yq -o=json '.batches | to_entries | map([.value[]] | join(","))' .github/input.yaml)
+         JSON_OUTPUT=$(yq '.batches | to_entries | map([.value[]] | join(","))' .github/input.yaml)
          echo "$JSON_OUTPUT"
 
 
