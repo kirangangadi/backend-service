@@ -1,0 +1,17 @@
+# .github/workflows/deploy-service.yml
+name: Deploy Service
+
+on:
+  push:
+  workflow_dispatch: 
+
+jobs:
+  yq_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check YQ
+        run: |
+         JSON_OUTPUT=$(yq -o=json '.batches | to_entries | map([.value[]] | join(","))' ./github/input.yaml)
+         echo "$JSON_OUTPUT"
+
+
