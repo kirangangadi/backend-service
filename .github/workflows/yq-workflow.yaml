@@ -57,7 +57,7 @@ jobs:
             echo "JSON output: ${{ needs.yq_test.outputs.JSON_OUTPUT3 }}"
             echo "JSON output: ${{ needs.yq_test.outputs.test_output }}"
             echo "JSON output: ${{ needs.yq_test.outputs.manual_input }}"
-            echo "JSON output: ${{ needs.yq_test.outputs.json_single_line_manual }}"
+            echo "${{ needs.yq_test.outputs.json_single_line_manual }}"
 
 #   example_metrix:
 #     needs: yq_test
