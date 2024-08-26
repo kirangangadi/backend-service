@@ -23,14 +23,14 @@ jobs:
          JSON_OUTPUT2=$(yq '.batches | to_entries | map("\"" + (.value | join(", ")) + "\"") | join(", ")' .github/input.yaml | paste -sd "," -)
 
          output_test=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml)
-         json_single_line=$output_test
-         JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[\" + join(",") + "]"'  .github/input.yaml)
+         #json_single_line=$output_test
+         JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[" + join(",") + "]"'  .github/input.yaml)
          echo "JSON_OUTPUT is $JSON_OUTPUT"
          echo "JSON_OUTPUT1 is $JSON_OUTPUT1"
          echo "JSON_OUTPUT2 is $JSON_OUTPUT2"
          echo "JSON_OUTPUT3 is $JSON_OUTPUT3"
          echo "json output is $output_test"
-         echo "json output is $json_single_line"
+        #  echo "json output is $json_single_line"
         #  echo "output_test=$output_test" >> GITHUB_OUTPUT
         #  echo "json_single_line=$json_single_line" >> GITHUB_OUTPUT
 
