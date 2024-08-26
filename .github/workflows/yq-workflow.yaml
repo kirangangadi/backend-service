@@ -7,12 +7,15 @@ on:
 
 jobs:
   yq_test:
+    outputs: 
+        output_test: ${{ steps.get-config.outputs.output_test }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Check YQ
+        id: get-config
         run: |
          ls -R
          JSON_OUTPUT=$(yq '.batches | to_entries | map([.value[]] | join(","))' .github/input.yaml)
@@ -23,6 +26,18 @@ jobs:
          echo "$JSON_OUTPUT"
          echo "$JSON_OUTPUT1"
          echo "$JSON_OUTPUT2"
-         echo "output=$output" >> GITHUB_OUTPUT
+         echo "json output is $output"
+         echo "output_test=$output" >> GITHUB_OUTPUT
+
+  use-output:
+    needs: yq_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use JSON output
+        run: |
+            echo "JSON output: ${{ needs.yq_test.outputs.output_test }}"
 
 
