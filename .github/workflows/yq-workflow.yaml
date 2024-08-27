@@ -9,7 +9,7 @@ jobs:
   yq_test:
     outputs: 
         json_single_line: ${{ steps.get-config.outputs.json_single_line }}
-        JSON_OUTPUT3: ${{ steps.get-config.outputs.JSON_OUTPUT3 }}
+        #JSON_OUTPUT3: ${{ steps.get-config.outputs.JSON_OUTPUT3 }}
         test_output: ${{ steps.get-config.outputs.test_output }}
         manual_input: ${{ steps.get-config.outputs.manual_input }}
         json_single_line_manual: ${{ steps.get-config.outputs.json_single_line_manual }}
@@ -22,22 +22,29 @@ jobs:
         id: get-config
         run: |
          ls -R
-         JSON_OUTPUT=$(yq '.batches | to_entries | map([.value[]] | join(","))' .github/input.yaml)
-         JSON_OUTPUT1=$(yq '.batches | .[] | join(", ")' .github/input.yaml)
-         JSON_OUTPUT2=$(yq '.batches | to_entries | map("\"" + (.value | join(", ")) + "\"") | join(", ")' .github/input.yaml | paste -sd "," -)
+         #JSON_OUTPUT=$(yq '.batches | to_entries | map([.value[]] | join(","))' .github/input.yaml)
+         #JSON_OUTPUT1=$(yq '.batches | .[] | join(", ")' .github/input.yaml)
+         #JSON_OUTPUT2=$(yq '.batches | to_entries | map("\"" + (.value | join(", ")) + "\"") | join(", ")' .github/input.yaml | paste -sd "," -)
 
          output_test=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml)
          json_single_line=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -c)
          json_single_line_manual=$json_single_line
-         JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[" + join(",") + "]"'  .github/input.yaml)
+         #JSON_OUTPUT3=$(yq -o=json '.batches | to_entries | map(.value | join(",")) | "[" + join(",") + "]"'  .github/input.yaml)
          manual_input="["service1,service2,service3","service4,service5,service6","service7,service8,service9"]"
          test_output="[service1,service2,service3,service4,service5,service6,service7,service8,service9]"
-         echo "JSON_OUTPUT is $JSON_OUTPUT"
-         echo "JSON_OUTPUT1 is $JSON_OUTPUT1"
-         echo "JSON_OUTPUT2 is $JSON_OUTPUT2"
-         echo "JSON_OUTPUT3 is $JSON_OUTPUT3"
-         echo "json output is $output_test"
+
+         json_tostring=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -r 'tostring')
+         
+         #echo "JSON_OUTPUT is $JSON_OUTPUT"
+         #echo "JSON_OUTPUT1 is $JSON_OUTPUT1"
+         #echo "JSON_OUTPUT2 is $JSON_OUTPUT2"
+         #echo "JSON_OUTPUT3 is $JSON_OUTPUT3"
+         
+         echo "output_test is $output_test"
          echo "json_single_line is $json_single_line"
+         echo "json_tostring $json_tostring"
+
+         
          echo "JSON_OUTPUT3=$JSON_OUTPUT3" >> GITHUB_OUTPUT
          echo "json_single_line=$json_single_line" >> GITHUB_OUTPUT
          echo "test_output=$test_output" >> $GITHUB_OUTPUT
@@ -54,7 +61,7 @@ jobs:
       - name: Use JSON output
         run: |
             echo "JSON output: ${{ needs.yq_test.outputs.json_single_line }}"
-            echo "JSON output: ${{ needs.yq_test.outputs.JSON_OUTPUT3 }}"
+            #echo "JSON output: ${{ needs.yq_test.outputs.JSON_OUTPUT3 }}"
             echo "JSON output: ${{ needs.yq_test.outputs.test_output }}"
             echo "JSON output: ${{ needs.yq_test.outputs.manual_input }}"
             echo "${{ fromJson(needs.yq_test.outputs.json_single_line_manual) }}"
