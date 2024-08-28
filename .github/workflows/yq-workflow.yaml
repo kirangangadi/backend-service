@@ -32,9 +32,10 @@ jobs:
 
          # set output
 
-         echo "json_single_line=$json_single_line" >> GITHUB_OUTPUT
-         echo "json_single_line_manual=$json_single_line_manual" >> GITHUB_OUTPUT
-         echo "dummy_json=$dummy_json" >> GITHUB_OUTPUT
+         echo "json_single_line=$json_single_line" >> $GITHUB_OUTPUT
+         echo "json_single_line_manual=$json_single_line_manual" >> "$GITHUB_OUTPUT"
+         echo "dummy_json=$dummy_json" >> "$GITHUB_OUTPUT"
+         echo "output_${version}=${version}" >> "$GITHUB_OUTPUT"
          
          
          
