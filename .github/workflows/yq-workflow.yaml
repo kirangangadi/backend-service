@@ -66,8 +66,8 @@ jobs:
             echo "JSON output: ${{ needs.yq_test.outputs.json_single_line_manual }}"
             echo "JSON output: ${{ needs.yq_test.outputs.dummy_json }}"
 
-            # echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.json_single_line) }}"
-            # echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.json_single_line_manual) }}"
-            # echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.dummy_json) }}"
+            echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.json_single_line) }}"
+            echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.json_single_line_manual) }}"
+            echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.dummy_json) }}"
 
 
