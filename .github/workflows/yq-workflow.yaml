@@ -23,7 +23,7 @@ jobs:
          json=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml)
          json_single_line=$(yq -o=json '.batches | to_entries | map(.value | join(","))' .github/input.yaml | jq -c)
          json_single_line_manual=$json_single_line
-         dummy_json="{\"matrix\":[\"a\",\"b\",\"c\"]}"
+         dummy_json="{\"matrix\":[\"a,b,c\",\"b\",\"c\"]}"
 
          echo "json is $json"
          echo "json_single_line is $json_single_line"
@@ -68,6 +68,10 @@ jobs:
 
             echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.json_single_line) }}"
             echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.json_single_line_manual) }}"
-            echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.dummy_json) }}"
+            echo "From JSON output: ${{ fromJson(needs.yq_test.outputs.dummy_json).matrix }}"
+
+            echo "From JSON output: ${{ toJson(needs.yq_test.outputs.json_single_line) }}"
+            echo "From JSON output: ${{ toJson(needs.yq_test.outputs.json_single_line_manual) }}"
+            echo "From JSON output: ${{ toJson(needs.yq_test.outputs.dummy_json) }}"
 
 
